@@ -64,4 +64,30 @@ aaaaaaaa
 
 
 ------------------------------------------------------
-Archivos  ==>  
+NODE JS 
+*Node.js es un entorno de tiempo de ejecución de JavaScript.
+*Node.js fue creado por los desarrolladores originales de JavaScript 
+	e incluye todo lo que se necesita para ejecutar un programa escrito en JavaScript por fuera del navegador.
+
+
+NPM => administrador de paquetes, tiene muchas librerias, entonces vos instalas npm y ya tenes muchas ahi
+no necesitas instalar todas 
+
+josn. 
+{
+  "name": "proyectonode",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": { 
+    "left-pad": "^1.3.0"
+  }
+} devDependencies son los paquetes q instale en este caso el left-pad(le agrega espacios a la izquierda) 
+
+ los * ^ ~ estos simbolos nos dicen que se actualiza y cuando cada uno depende del paquete, * ejemplo este actualiza si hay una version mejor 
+
