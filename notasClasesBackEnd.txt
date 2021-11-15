@@ -1,0 +1,67 @@
+SQL -->  EXTRICTO , INFO RELACIONADA ENTRE SI 
+NOSQL --> LIVIANOS, DOCUMENTOS Q PUEDEN O NO ESTAR RELACIONADOS , MUCHOS DATOS , Y CONSULTAS RAPIDAS
+
+
+MONGODB (NOSQL) ALMACENA BIG DATA
+
+EXPRESS JS --> FRAMEWORK CREAR APLICACIONES WEB EN MENOS TIEMPO , 
+ADMINITRAR ARCHIVOS , OPTIMIZAR RUTAMIENTO , COKIES
+
+REACT JS LIBRERIA 
+
+NODE JS --> MANEJAR JS EN EL SERVIDOR 
+
+MERN ===> (MONGO EXPRES REACT NODE)
+
+===================================
+con node nombrearchivo.js compila 
+
+
+apartir de Es6 no se usa var , nos diminuye el scope 
+
+
+
+-------------------------------------------------------
+CALLBACK => Un callback es una función que se envía como argumento a otra función.
+El callback siempre es el último parámetro.
+
+PROMESA => Una Promesa es un objeto que encapsula una operación, 
+y que permite definir acciones a tomar luego de finalizada dicha operación
+-------------------------------------------------------------
+Ejecución Sincrónica: debe finalizar una función para poder continuar con la otra.
+
+*A las operaciones que obligan al programa a esperar a que 
+	se finalicen antes de pasar a ejecutar la siguiente instrucción se las conoce como bloqueantes. 
+	Este tipo de operaciones permiten que el programa se comporte de la manera más intuitiva.
+*Permiten la ejecución de una sola operación en simultáneo.
+*A este tipo de ejecución se la conoce como sincrónica. 
+
+Ejecución Asincrónica: sólo sabemos en qué orden comenzarán su ejecución las instrucciones,
+pero no sabemos en qué momento ni en qué orden terminarán de ejecutarse. 
+*Este tipo de operaciones permiten que, una vez iniciadas, 
+	el programa pueda continuar con la siguiente instrucción, sin esperar a que finalice la anterior. 
+*Permite la ejecución de varias operaciones en paralelo, sucediendo al mismo tiempo. 
+*A este tipo de ejecución se la conoce como asincrónica.
+
+----------------------------------------------------------------------
+
+setTimeout: Es una función nativa, no hace falta importarla.
+La función setTimeout() recibe un callback, y lo ejecuta después de un número específico de milisegundos.
+Trabaja sobre un modelo asincrónico no bloqueante
+
+setInterval : La función setInterval() también recibe un callback, pero a diferencia de setTimeout() lo ejecuta una
+ y otra vez cada vez que se cumple la cantidad de milisegundos indicada.
+
+
+----------------------------------------------
+las piramides de la muerte se solucionan con promesas
+aaaaaaaa
+	aaaaaaaa
+		aaaaaaaa
+			aaaaaaa
+				aaaaaaa (esto es una piramide de la muerte)
+
+
+
+------------------------------------------------------
+Archivos  ==>  
