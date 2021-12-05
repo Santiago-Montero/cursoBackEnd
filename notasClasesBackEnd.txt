@@ -91,3 +91,86 @@ josn.
 
  los * ^ ~ estos simbolos nos dicen que se actualiza y cuando cada uno depende del paquete, * ejemplo este actualiza si hay una version mejor 
 
+
+================================================
+Servidor Web 
+Express
+
+HTTP es un modulo de node.js , trabaja con el protocolo http 
+nos sirve para crear un servidor HTTP q acepte solicitudes desde un cliente 
+para poder usarlo hay q requerirlo de la siguiente manera ==> require('http')
+
+para que se usa? para abrir un servicio web
+
+// request = peticion , response = respuesta
+el request responde con una pagina web o lo q nosotros querramos 
+
+con response.end ==> retorna 
+
+express ==>  facilitará la tarea de crear los distintos puntos de entrada de nuestro servidor.
+npm init
+npm install express
+
+https://expressjs.com/en/api.html doc 
+
+
+========================================================
+EXPRESS , RESTful , POSTMAN , HTTP 
+
+Aplicacion Restful ==>  aplicaciones q operan en servicios web , responden consultas a traves de internet
+(respetan reglas y convenciones)
+
+protocolo HTTP ==>  hypertext transfer protocol
+
+intercambiar datos atraves de internet 
+
+peticiones => post , get(desde la url) , put , delete 
+
+etapas => peticion , devuelve una respuesta , y el navegador lo transforma para q el usuario lo vea
+
+peticion resultado => el estado(codigo) : 
+*100-199 => peticion recibida
+*200-299 => exito
+*300-399 => redireccion
+*400-499 => error cliente
+*500-599 => error server (graves, errores de codigo de programador)
+
+
+codigos mas comunes => 200 OK , 400 Bad Request , 404 Not Found , 500 Internal Server Error
+
+Una API es un conjunto de reglas y especificaciones que describen la manera en que un sistema puede comunicarse con otros.
+La API puede tener interfaz gráfica o ser de uso interno.
+La API tiene que estar acompañada con la documentación detallada que describa su operación y el formato de interacción con la misma.
+
+
+REST viene del inglés “REpresentational State Transfer” (o en español: Transferencia de Estado Representacional).
+Transferir un Estado de Representación implica el envío de datos (con una determinada estructura) entre dos partes.
+Los dos formatos más utilizados para este tipo de transferencias de datos son XML y JSON.
+
+APIREST
+Es un tipo de API que no dispone de interfaz gráfica.
+Se utiliza exclusivamente para comunicación entre sistemas, mediante el protocolo HTTP.
+
+Requisitps para q una api se considere Rest:
+*Arquitectura Cliente-Servidor sin estado 
+*Cacheable
+*Operaciones comunes 
+*Interfaz uniforme 
+*Utilización de hipermedios
+
+Una aplicación RESTful requiere un enfoque de diseño distinto a la forma típica de pensar en un sistema: lo contrario a RPC
+RPC (Remote Procedure Calls, llamadas a procedimientos remotos) basa su funcionamiento en las operaciones que puede realizar el sistema (acciones, usualmente verbos). Ej: getUsuario()
+En REST, por el contrario, el énfasis se pone en los recursos (usualmente sustantivos), especialmente en los nombres que se le asigna a cada tipo de recurso. Ej. Usuarios.
+Cada funcionalidad relacionada con este recurso tendría sus propios identificadores y peticiones en HTTP.
+
+
+
+------------
+Router en Express 
+El Router de express nos permite crear múltiples "mini aplicaciones" para que se pueda asignar un espacio de nombre al api público, autenticación y otras rutas en sistemas de enrutamiento separados.
+
+Servicio de estaticos
+
+
+
+

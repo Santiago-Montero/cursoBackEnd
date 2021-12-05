@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forms</title>
+</head>
+<body>
+    <form action="/personas" method="post">
+        <input type="text" name="name">
+        <input type="text" name="lastname">
+        <input type="number" name="age">
+        <button type="submit" >Enviar</button>
+    </form>
+
+    <% if(personas.length == 0){ %>
+        <h1>No se encontro datos</h1>
+    <% }else{ %>
+        <table>
+            <tr>
+                <td>Nombre</td>
+                <td>Apellido</td>
+                <td>Edad</td>
+            </tr>
+            <% personas.forEach( persona => { %>
+                <tr>
+                    <td> <%= persona.name %> </td>
+                    <td> <%= persona.lastname %> </td>
+                    <td> <%= persona.age %> </td>
+                </tr>
+            <% }) %> 
+        </table>
+    <%} %>
+</body>
+</html>

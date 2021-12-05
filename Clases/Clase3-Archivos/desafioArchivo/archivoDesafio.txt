@@ -1,6 +1,6 @@
 [
   {
-    "title": "Item1",
+    "title": "Item2",
     "price": 1000,
     "thumbnail": "fotin",
     "id": 1

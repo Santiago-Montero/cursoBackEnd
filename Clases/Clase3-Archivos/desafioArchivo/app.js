@@ -2,66 +2,83 @@ const fs = require('fs')
 
 class Contenedor {
     constructor(name){
-        this.nameFile = name
+        this.nameFile = name,
+        this.file = []
+    }
+
+    async read(){
+        try{
+            const contenido = await fs.promises.readFile(this.nameFile, "utf-8");
+            const listaDeProductos = JSON.parse(contenido);
+            this.file = listaDeProductos;
+            return contenido;
+
+        }catch(err){ // error en la lectura de archivo
+            try{
+                const contenido = await fs.promises.writeFile(this.nameFile, '');
+                return contenido;
+            }catch(err){
+                return err // error en la creacion de archivo
+            }
+        }
     }
 
     async save(producto){
         try {
-
-            const contenido = await fs.promises.readFile(this.nameFile, "utf-8");
-            let productos = [];
-            
-            if (contenido == "") {
+            const contenido =  await this.read(); // uso contenido para ver si esta vacio el archivo
+            if (contenido == undefined) {
                 producto.id = 1;
-                productos.push(producto);
-            } else {
-                const listaDeProductos = JSON.parse(contenido);
-                producto.id = listaDeProductos.length + 1;
-                listaDeProductos.push(producto);
-                productos = listaDeProductos;
+                this.file.push(producto);
+            }else {
+                let pos = this.file.length - 1 ;
+                producto.id =  this.file[pos].id + 1;
+                this.file.push(producto);
             }
-            const productosString = JSON.stringify(productos, null, 2);
+            const productosString = JSON.stringify(this.file, null, 2);
             await fs.promises.writeFile(this.nameFile, productosString);
             return producto.id;
 
         } catch (error) {
-            return error;
+            return error; // error al leer o en el proceso de guardar
         }
     }
     async getById(idProducto){
         try{
 
-            const contenidoJSON = await fs.promises.readFile(this.nameFile, "utf-8");
-            const listaDeProductos = JSON.parse(contenidoJSON);
-            const item = listaDeProductos.find(producto => producto.id == idProducto);
-            item ? item : null;
-        
+            const contenido = await this.read();
+            const item = contenido.find(producto => producto.id == idProducto);
+            if(item){
+                return item;
+            }else{
+                return null;
+            }
         }catch(error){
             return error;
         }
     }
     async getAll(){
         try{
-            const contenidoJSON = await fs.promises.readFile(this.nameFile, "utf-8");
-            const listaDeProductos = JSON.parse(contenidoJSON);
-            
-            return listaDeProductos
-    
+            const listaDeProductos = await this.read();
+            if(listaDeProductos){
+                return listaDeProductos
+            }else{
+                return []
+            }
         }catch (error){
             return error ;
         }
     }
     async deleteById(idProducto) {
         try{
-            const contenidoJSON = await fs.promises.readFile(this.namefile,"utf-8");
-            const listaDeProductos = JSON.parse(contenidoJSON);
-            const listaProductosSinId = listaDeProductos.filter(producto => producto.id !== idProducto);
-
-            const listaProductosSinIdJSON = JSON.stringify(listaProductosSinId, null, 2);
-            fs.promises.writeFile(this.namefile, listaProductosSinIdJSON);
-            return 'Se actualizo'
+            await this.read();
+            const productoEliminar = this.file.find(producto => producto.id == idProducto);
+            if(productoEliminar){
+                const listaDeProductosNueva = this.file.filter(producto => producto.id != idProducto);
+                const productosString = JSON.stringify(listaDeProductosNueva, null, 2);
+                fs.promises.writeFile(this.nameFile, productosString);
+            }
         }catch(error){
-            return error
+            return error;
         }
     }
     
@@ -74,16 +91,18 @@ class Contenedor {
     }
 
 }
+
 const item1 = {
-    title: 'Item1',
+    title: 'Item2',
     price: 1000,
     thumbnail: 'fotin'
 }
 const producto = new Contenedor('archivoDesafio.txt');
-// producto.save(item1);
+// producto.read();
+producto.save(item1);
+// producto.deleteById(45);
 // producto.getById(1)
 // producto.getAll();
-// producto.deletebyId(1);
 // producto.deleteAll()
 
 /*
