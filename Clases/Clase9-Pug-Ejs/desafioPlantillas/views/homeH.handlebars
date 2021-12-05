@@ -1,0 +1,29 @@
+<div class="container mt-5">
+    {{#if productExist }}
+        <table class="table table-striped table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Thumbnail</th>
+                </tr>
+            </thead>
+            {{#each productos}}
+            <tbody>
+                <tr scope="row">
+                    <td>{{this.title}}</td>
+                    <td>{{this.price}}</td>
+                    <td>{{this.thumbnail}}</td>
+                </tr>
+            </tbody>
+            {{/each}}
+        </table>
+    {{else}}
+        <h1>No se encontro datos</h1>
+    {{/if}}
+    </div>
+    <div class="container mt-5">
+        <div class="d-flex justify-content-center">
+            <a href="/formH" class="btn btn-primary" >Agregar Productos</a>
+        </div>
+    </div>
