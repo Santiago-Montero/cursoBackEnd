@@ -1,0 +1,65 @@
+<div class="container">
+    <h1>Agregar un Producto</h1>
+    <form action="/productos" method="post">
+        <div class="container mt-5">
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input class="form-control" type="text" name="title">
+            </div>
+            <div class="form-group">
+                <label for="price">Price</label>
+                <input class="form-control" type="number" name="price">
+            </div>
+            <div class="form-group">
+                <label for="thumbnail">Thumbnail</label>
+                <input class="form-control" type="text" name="thumbnail">
+            </div>
+            <button type="submit" class="btn btn-primary">Agregar</button>
+        </div>
+    </form>
+</div>
+
+
+<div class="container mt-5">
+    <h1>Listado de Productos</h1>
+    {{#if productExist }}
+    <table class="table table-striped table-dark">
+        <thead>
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Price</th>
+                <th scope="col">Thumbnail</th>
+            </tr>
+        </thead>
+        {{#each productos}}
+        <tbody>
+            <tr scope="row">
+                <td>{{this.title}}</td>
+                <td>{{this.price}}</td>
+                <td><img src={{this.thumbnail}} alt={{this.thumbnail}} width="100" height="auto"></td>
+                
+            </tr>
+        </tbody>
+        {{/each}}
+    </table>
+    {{else}}
+    <h1>No se encontro datos</h1>
+    {{/if}}
+</div>
+
+<div class="container">
+    <h1>Chat de la Aplicacion</h1>
+    <div id="usuario"></div>
+    <div id="conectados"></div>
+    <div class="userMail" id="contenedorMail">
+        <input type="text" class="form-control" id="mail" />
+        <button class="btn btn-primary" id="btnMail">Guardar Mail</button>
+        <div class="alert alert-primary" role="alert" id="msg"></div>
+    </div>
+    <div class="mb-3" id="mensajesGlobales">
+        <label for="chat" class="form-label">Chat</label>
+        <input type="text" class="form-control" id="texto" />
+        <button class="btn btn-primary" id="btn">Enviar Mensaje</button>
+    </div>
+    <div id="chat"></div>
+</div>
