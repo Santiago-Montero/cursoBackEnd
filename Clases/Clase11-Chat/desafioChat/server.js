@@ -23,59 +23,26 @@ app.use(express.urlencoded({
 }));
 app.use(express.static('./public'));
 
-const productos = [
-    {
-        title: "Escuadra",
-        price: 123.45,
-        thumbnail: "https://cdn3.iconfinder.com/data/icons/education-209/64/ruler-triangle-stationary-school-256.png",
-        id: 1
-    },
-    {
-        title: "Calculadora",
-        price: 234.56,
-        thumbnail: "https://cdn3.iconfinder.com/data/icons/education-209/64/calculator-math-tool-school-256.png",
-        id: 2
-    },
-    {
-        title: "Globo Terráqueo",
-        price: 345.67,
-        thumbnail: "https://cdn3.iconfinder.com/data/icons/education-209/64/globe-earth-geograhy-planet-school-256.png",
-        id: 3
-    }
-]
 
-const getId = () => {
-    const pos = productos.length;
-    return productos[pos - 1].id + 1
-}
 
 app.get("/", (req, res) =>{
-    res.render('home', {
-        productos,
-        productExist : productos.length >= 0 ? true : false
-    }) 
-});
-
-app.post("/productos", (req, res) =>{
-    const productoNuevo = req.body;
-    const producto = {
-        ...productoNuevo,
-        id : getId()
-    }
-    productos.push(producto)
-    res.render('home',{
-        productos,
-        productExist : productos.length >= 0 ? true : false
-    })
+    res.render('home') 
 });
 
 // ---------------------------------
 const Contenedor = require("./file.js");
 const mensajes= new Contenedor('mensajes.json');
 
+
+const productos = []
 const messages =[]
 
 let usersOnline = 0;
+
+function getId(){
+    const pos = productos.length;
+    pos > 0 ? productos[pos - 1].id + 1 : 1
+}
 
 io.on('connection', (socket) => {
     usersOnline ++ ;
@@ -83,7 +50,14 @@ io.on('connection', (socket) => {
     console.log(`cantidad de usuarios : ${usersOnline}`)
     console.log('Nuevo usuario')
     socket.emit('messages', messages)
-    
+
+    socket.emit('productos', productos)
+
+    socket.on('nuevoProducto', data => {
+        data.id = getId()
+        productos.push(data);
+        io.sockets.emit('productos', [data]);
+    })
     socket.on('new-message' , data => {
         data.time = new Date().toLocaleTimeString()
         mensajes.save(data);
