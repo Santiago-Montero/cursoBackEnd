@@ -30,19 +30,20 @@ app.get("/", (req, res) =>{
 });
 
 // ---------------------------------
-const Contenedor = require("./file.js");
-const mensajes= new Contenedor('mensajes.json');
+// const Contenedor = require("./file.js");
+// const mensajes= new Contenedor('mensajes.json');
+const { options } = require('./db/options.js');
+const { options2 } = require('./db/options2.js');
+const Contenedor = require("./app.js");
+const Contenedor2 = require("./app2.js");
+const mensajes= new Contenedor('mensajes_chat', options);
+const productosDb = new Contenedor2('productos_chat', options2);
 
 
 const productos = []
 const messages =[]
 
 let usersOnline = 0;
-
-function getId(){
-    const pos = productos.length;
-    pos > 0 ? productos[pos - 1].id + 1 : 1
-}
 
 io.on('connection', (socket) => {
     usersOnline ++ ;
@@ -54,14 +55,16 @@ io.on('connection', (socket) => {
     socket.emit('productos', productos)
 
     socket.on('nuevoProducto', data => {
-        data.id = getId()
-        productos.push(data);
+        // productos.push(data);
+        productosDb.insertarProductos(data)
         io.sockets.emit('productos', [data]);
     })
     socket.on('new-message' , data => {
-        data.time = new Date().toLocaleTimeString()
-        mensajes.save(data);
-        messages.push(data);
+        data.tiempo = new Date().toLocaleTimeString()
+        console.log(data)
+        // mensajes.save(data);
+        mensajes.insertarMensajes(data)
+        // messages.push(data);
         io.sockets.emit('messages', [data]);
     })
     socket.on('disconnect' , () => {

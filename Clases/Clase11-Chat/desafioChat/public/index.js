@@ -42,9 +42,9 @@ function renderProductos(data){
     data.forEach(producto => {
 
         let contenedorTr = document.createElement('tr')
-        contenedorTr.innerHTML = `<td>${producto.title}</td>
+        contenedorTr.innerHTML = `<td>${producto.nombre}</td>
                                     <td>${producto.price}</td>
-                                    <td><img src=${producto.thumbnail} alt=${producto.thumbnail} width="100" height="auto"></td>`
+                                    <td><img src=${producto.foto} alt=${producto.foto} width="100" height="auto"></td>`
         contenedorProductos.append(contenedorTr)
 
     })
@@ -52,7 +52,7 @@ function renderProductos(data){
 function render(data) {
     data.forEach(msg => {
         let chats = document.createElement('p')
-        chats.innerHTML = `Enviado: ${msg.time} De ${msg.author} : ${msg.text}`
+        chats.innerHTML = `Enviado: ${msg.tiempo} De ${msg.autor} : ${msg.texto}`
         chat.prepend(chats);
     })
 }
@@ -73,8 +73,8 @@ function saveMail(){
 
 function addMessage(){
     const message = {
-        author : username,
-        text : document.getElementById('texto').value
+        autor : username,
+        texto : document.getElementById('texto').value
     }
     socket.emit('new-message' , message)
 }
@@ -83,13 +83,13 @@ function addMessage(){
 
 function agregarProducto(){
     const producto = {
-        title: titleInput.value,
+        nombre: titleInput.value,
         price: priceInput.value,
-        thumbnail: thumbnailInput.value
+        foto: thumbnailInput.value
     }
     const message = {
-        author : username,
-        text : 'Agrego un Nuevo producto, es: ' + producto.title
+        autor : username,
+        texto : 'Agrego un Nuevo producto, es: ' + producto.title
     }
     socket.emit('new-message' , message)
     socket.emit('nuevoProducto' , producto)
