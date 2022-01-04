@@ -13,23 +13,52 @@ class Contenedor {
         })
         .then(() => console.log('se creo la tabla'))
         .catch((error) => console.log(error))
-        .finally(() => this.knex.destroy())
     }
-    insertarMensajes(mensajes){
-        (this.knex)(this.nameTable).insert(mensajes)
+    crearTablaProductos(){
+        this.knex.schema.createTable(this.nameTable, table => {
+            table.increments('id')
+            table.string('nombre')
+            table.string('foto')
+            table.integer('price')
+        })
+        .then(() => console.log('se creo la tabla'))
+        .catch((error) => console.log(error))
+    }
+    insertarProductos(productos){
+        const knex = this.knex
+        const name = this.nameTable
+        knex(name).insert(productos)
         .then(() => console.log('se agrego la info'))
         .catch((error) => console.log(error))
-        .finally(() => this.knex.destroy())
+        
     }
-    listarMensajes(){
-        (this.knex).from(this.nameTable).select('*')
-        .then((rows) => {
-            for (const row of rows){
-                console.log(row)
-            }
+    async listarProductos(){
+        let productos = []
+        await this.knex.from(this.nameTable).select('*')
+        .then((productosDb) => {
+            productos = [...productosDb ]
         })
         .catch((error) => console.log(error))
-        .finally(() => this.knex.destroy())
+        return productos 
+    }
+    
+    async insertarMensajes(mensajes){
+        const knex = this.knex
+        const name = this.nameTable
+        await knex(name).insert(mensajes)
+        .then(() => console.log('se agrego la info'))
+        .catch((error) => console.log(error))
+        .finally(() => knex.destroy())
+    }
+    async listarMensajes(){
+        let mensajes = []
+        await this.knex.from(this.nameTable).select('*')
+        .then((mensajesDb) => {
+            mensajes = [...mensajesDb]
+        })
+        .catch((error) => console.log(error))
+        
+        return mensajes
     }
 }
 

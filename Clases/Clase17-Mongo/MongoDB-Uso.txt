@@ -1,0 +1,25 @@
+Mongo DB 
+
+hay q crear el servidor y desp se puede unar en otra consola para el cliente
+
+1 paso -> crear el servidor 
+2 paso -> usarlo desde la consola 
+
+
+crear servidor -> ir al destino donde queremos poner la carpeta del servidor
+crear carpeta  -> mkdir "mi nombre de carpeta" 
+crear server   -> mongod --dbpath la url de mi carpeta desde el C:\
+usar otra consola -> agarrar otra consola mientras dejas el server andando y pones mongo 
+ahi llamas ala base 
+
+
+
+comandos 
+
+mongo: nos conectará de forma automática con el servidor. 
+show dbs: muestra la lista de bases de datos existentes.
+use: selecciona la base de datos activa (si no existe la crea):
+Ej. use mibase
+show collections: muestra la lista de colecciones de esta base
+db.personas.insertOne({clave: valor, ...}): crea una colección en forma implícita llamada ‘personas’ y le inserta un documento.
+db.personas.find(): busca todos los documentos que están dentro de la colección ‘personas’

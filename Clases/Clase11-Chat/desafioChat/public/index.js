@@ -30,12 +30,12 @@ const socket = io.connect()
 
 
 socket.on('productos', data => {
-    renderProductos(data)
+    if (data) renderProductos(data)
 })
 
 
 socket.on('messages', data => {
-    render(data)
+    if (data) render(data)
 })
 
 function renderProductos(data){
@@ -82,6 +82,7 @@ function addMessage(){
 
 
 function agregarProducto(){
+    console.log('hola')
     const producto = {
         nombre: titleInput.value,
         price: priceInput.value,
@@ -89,7 +90,7 @@ function agregarProducto(){
     }
     const message = {
         autor : username,
-        texto : 'Agrego un Nuevo producto, es: ' + producto.title
+        texto : 'Agrego un Nuevo producto, es: ' + producto.nombre
     }
     socket.emit('new-message' , message)
     socket.emit('nuevoProducto' , producto)

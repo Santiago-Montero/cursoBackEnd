@@ -33,38 +33,43 @@ app.get("/", (req, res) =>{
 // const Contenedor = require("./file.js");
 // const mensajes= new Contenedor('mensajes.json');
 const { options } = require('./db/options.js');
-const { options2 } = require('./db/options2.js');
 const Contenedor = require("./app.js");
-const Contenedor2 = require("./app2.js");
-const mensajes= new Contenedor('mensajes_chat', options);
-const productosDb = new Contenedor2('productos_chat', options2);
-
-
-const productos = []
-const messages =[]
+const productosDb = new Contenedor('productos_chat', options);
+const mensajesDb= new Contenedor('mensajes_chat', options);
+/* scripts tablas 
+productosDb.crearTablaProductos()
+mensajesDb.crearTabla()
+productosDb.listarProductos()
+productosDb.insertarProductos()
+mensajes.listarMensajes()
+mensajes.insertarMensajes()
+scripts tablas */ 
+productosDb.crearTablaProductos()
+mensajesDb.crearTabla()
 
 let usersOnline = 0;
 
-io.on('connection', (socket) => {
+io.on('connection', async (socket) => {
     usersOnline ++ ;
     io.emit('stats' , {usersOnline})
     console.log(`cantidad de usuarios : ${usersOnline}`)
     console.log('Nuevo usuario')
+    const productos = await productosDb.listarProductos()
+    const messages = await mensajesDb.listarMensajes()
+    console.log(messages)
     socket.emit('messages', messages)
 
     socket.emit('productos', productos)
 
-    socket.on('nuevoProducto', data => {
-        // productos.push(data);
+    socket.on('nuevoProducto', async (data) => {
+        console.log(data)
         productosDb.insertarProductos(data)
         io.sockets.emit('productos', [data]);
     })
-    socket.on('new-message' , data => {
+    socket.on('new-message' , async (data) => {
         data.tiempo = new Date().toLocaleTimeString()
         console.log(data)
-        // mensajes.save(data);
-        mensajes.insertarMensajes(data)
-        // messages.push(data);
+        await mensajesDb.insertarMensajes(data)
         io.sockets.emit('messages', [data]);
     })
     socket.on('disconnect' , () => {

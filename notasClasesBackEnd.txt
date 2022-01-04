@@ -171,6 +171,9 @@ El Router de express nos permite crear múltiples "mini aplicaciones" para que s
 
 Servicio de estaticos
 
-
-
+==========================================================================================
+Websocket (comunicacion bidireccional)
+El protocolo TCP establece conexiones entre dos puntos finales de comunicación, llamados sockets.
+De esta manera, el intercambio de datos puede producirse en las dos direcciones.
+Websocket permite una comunicación directa y en tiempo real entre una aplicación web y un servidor Websocket.
 
