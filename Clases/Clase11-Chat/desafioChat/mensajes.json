@@ -1,14 +1,35 @@
 [
   {
-    "author": "hola@gmail.com",
-    "text": "Hola ",
-    "time": "11:27:35",
-    "id": 1
+    "autor": {
+      "id": "hola@gmail.com12312",
+      "nombre": "juan ",
+      "apellido" : "carlos",
+      "edad" : 21,
+      "alias" : "el carlos juan",
+      "avatar" : "foto.png"
+    },
+    "texto" : "hola chicos ! "
   },
   {
-    "author": "hola@gmail.com",
-    "text": "juan",
-    "time": "11:28:13",
-    "id": 2
+    "autor": {
+      "id": "hola@gmail.com23",
+      "nombre": "juan ",
+      "apellido" : "carlos2",
+      "edad" : 212,
+      "alias" : "el carlos juan",
+      "avatar" : "foto.png"
+    },
+    "texto" : "hola chicos3 ! "
+  },
+  {
+    "autor": {
+      "id": "hola@gmail.com",
+      "nombre": "juan3 ",
+      "apellido" : "carlos3",
+      "edad" : 213,
+      "alias" : "el carlos juan3",
+      "avatar" : "foto.png"
+    },
+    "texto" : "hola chicos3 ! "
   }
 ]
