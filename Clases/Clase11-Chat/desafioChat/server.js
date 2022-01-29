@@ -35,7 +35,7 @@ app.get("/", (req, res) =>{
 
 const productosRandom = []
 
-for (let i = 0; i < 5; i++) {
+for (let i = 0; i <= 5; i++) {
     let productoRandom ={
         nombre : faker.commerce.productName(),
         precio : faker.commerce.price(),
@@ -77,16 +77,13 @@ function imprimir (obj){
 }
 async function cargarMensajes(){
     const mensajes = await mensajesJSON.read()
-    const texto = new schema.Entity('texto');
     const autor = new schema.Entity('autor');
-    const mensajeNormalizr = new schema.Entity('mensajeNormalizr',{
+    const texto = new schema.Entity('texto');
+    const mensaje = new schema.Entity('mensaje',{
         autor : autor,
         texto : texto
     });
-    const mensajesNormalizr = new schema.Entity('mensajesNormalizr', {
-        mensajesNormalizr : [mensajeNormalizr]
-    })
-    const normalizedMensajes = normalize(JSON.parse(mensajes), mensajesNormalizr);
+    const normalizedMensajes = normalize(JSON.parse(mensajes), [mensaje]);
     imprimir(normalizedMensajes)
 }
 cargarMensajes()

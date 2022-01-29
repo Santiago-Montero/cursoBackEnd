@@ -8,7 +8,8 @@
       "alias" : "el carlos juan",
       "avatar" : "foto.png"
     },
-    "texto" : "hola chicos ! "
+    "texto" : "hola chicos ! ",
+    "id" : 1
   },
   {
     "autor": {
@@ -19,7 +20,8 @@
       "alias" : "el carlos juan",
       "avatar" : "foto.png"
     },
-    "texto" : "hola chicos3 ! "
+    "texto" : "hola chicos3 ! ",
+    "id" : 2
   },
   {
     "autor": {
@@ -30,6 +32,7 @@
       "alias" : "el carlos juan3",
       "avatar" : "foto.png"
     },
-    "texto" : "hola chicos3 ! "
+    "texto" : "hola chicos3 ! ",
+    "id" : 3
   }
 ]
