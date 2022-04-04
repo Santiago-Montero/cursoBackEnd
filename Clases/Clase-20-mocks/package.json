@@ -1,0 +1,17 @@
+{
+  "name": "clase-20-mocks",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "jest",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.2",
+    "faker": "^5.0.0",
+    "jest": "^27.4.7"
+  }
+}

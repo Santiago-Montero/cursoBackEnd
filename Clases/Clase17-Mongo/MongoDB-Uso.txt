@@ -8,7 +8,7 @@ hay q crear el servidor y desp se puede unar en otra consola para el cliente
 
 crear servidor -> ir al destino donde queremos poner la carpeta del servidor
 crear carpeta  -> mkdir "mi nombre de carpeta" 
-crear server   -> mongod --dbpath la url de mi carpeta desde el C:\
+crear server   -> mongod --dbpath " " la url de mi carpeta desde el C:\
 usar otra consola -> agarrar otra consola mientras dejas el server andando y pones mongo 
 ahi llamas ala base 
 
@@ -23,3 +23,13 @@ Ej. use mibase
 show collections: muestra la lista de colecciones de esta base
 db.personas.insertOne({clave: valor, ...}): crea una colección en forma implícita llamada ‘personas’ y le inserta un documento.
 db.personas.find(): busca todos los documentos que están dentro de la colección ‘personas’
+
+db.coll.drop() : borra una colección y sus índices respectivos.
+db.dropDatabase() : elimina la base de datos actual.
+db.createCollection("contacts") : crea una colección en forma explícita.
+db.coll.stats() : refleja estadísticas del uso de la base.
+db.coll.storageSize() : tamaño de almacenamiento de la colección.
+db.coll.totalIndexSize() : tamaño total de todos los índices de la colección.
+db.coll.totalSize(): tamaño total en bytes de los datos de la colección más el tamaño de cada índice de la colección.
+db.coll.validate({full: true}) : comprueba la integridad de una colección.
+db.coll.renameCollection("new_coll", true) : renombra una colección, el  2do parámetro para borrar la colección destino si existe.
