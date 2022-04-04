@@ -1,0 +1,6 @@
+
+class ProductFactory {
+    createProduct(data){
+        
+    }
+}
